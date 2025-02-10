@@ -112,7 +112,7 @@ HAVING
 			) AS cal_sum
 	)
 ORDER BY
-	S.id;
+	S.name;
 
 -- G. Write a query to return the names of the families, with at least 
 --    5 different plants, that are planted in the most flowerbeds on average, 
