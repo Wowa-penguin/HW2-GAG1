@@ -32,6 +32,15 @@ ORDER BY PERC DESC
 
 -- Explanation: 
 
+SELECT COUNT(*)
+FROM (
+    SELECT BD.id, GD.name, SUM(PI.percentage) as PERC
+    FROM plantedin PI
+        JOIN beds BD ON BD.id = PI.bedid
+        JOIN gardens GD ON BD.gardenid = GD.id
+    GROUP BY GD.name, BD.id, BD.description
+    HAVING SUM(PI.percentage) < 100
+    ORDER BY PERC DESC)
 
 -- D. Write a query using a set operator that returns the number of plants that 
 --    (a) are planted in “Faelledparken” or (b) are of type “shrub”.
