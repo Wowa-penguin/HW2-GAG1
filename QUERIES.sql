@@ -11,7 +11,7 @@
 SELECT COUNT(PL.name)
 FROM plants PL
     JOIN families FM ON FM.id = PL.familyid
-WHERE PL.name LIKE '%r%r%' AND FM.name = 'Ruellia';
+WHERE FM.name LIKE '%r%r%';
 
 -- B. The most overfilled flowerbed is planted to 105% capacity. 
 --    What are the ID(s) of the flowerbed(s) with the most overfilled capacity?
