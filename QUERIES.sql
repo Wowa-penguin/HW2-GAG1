@@ -82,9 +82,37 @@ FROM (
 -- F. Write a query that returns the ID and name of all staff that 
 --    (a) have position “Planter” and (b) have planted a larger area than any 
 --    staff member with position “Senior Planter”. Order the result by the name.
-
+-- 					Þarf að skoða þannan Kv:Heimir !!!
 -- Explanation: 
 
+SELECT 
+	S.id,
+	S.name,
+	SUM(PI.percentage) AS idk
+FROM staff S
+	JOIN plantedin PI on PI.staffid = S.id
+WHERE
+	S.position = 'Planter'
+GROUP BY
+	S.id,
+	S.name
+HAVING
+	SUM(PI.percentage) > (
+		SELECT MIN(cal_sum.plant_sum) AS min_plant
+			FROM (
+				SELECT 
+					SUM(PI.percentage) AS plant_sum
+				FROM staff S
+					JOIN plantedin PI on PI.staffid = S.id
+				WHERE
+					S.position = 'Senior Planter'
+				GROUP BY
+					S.id,
+					S.name
+			) AS cal_sum
+	)
+ORDER BY
+	S.id;
 
 -- G. Write a query to return the names of the families, with at least 
 --    5 different plants, that are planted in the most flowerbeds on average, 
