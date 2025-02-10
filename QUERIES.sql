@@ -18,6 +18,14 @@ WHERE FM.name LIKE '%r%r%';
 
 -- Explanation: 
 
+SELECT BD.id, GD.name, SUM(PI.percentage) as PERC
+FROM plantedin PI
+    JOIN beds BD ON BD.id = PI.bedid
+    JOIN gardens GD ON BD.gardenid = GD.id
+GROUP BY GD.name, BD.id, BD.description
+HAVING SUM(PI.percentage) > 100
+ORDER BY PERC DESC
+    
 
 -- C. There are 10 flowerbeds that are planted to more than 100% capacity. 
 --    How many flowerbeds are planted to less than 100% capacity.
