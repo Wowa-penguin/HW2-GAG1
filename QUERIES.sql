@@ -48,7 +48,7 @@ FROM (
 -- Explanation: 
 SELECT COUNT(*)
 FROM (
-SELECT PL.name
+    SELECT PL.name
     FROM plants PL
         JOIN plantedin PI ON PI.plantid = PL.id
         JOIN beds BD ON PI.bedid = BD.id
@@ -67,6 +67,17 @@ SELECT PL.name
 
 -- Explanation: 
 
+SELECT COUNT(*)
+FROM (
+    SELECT PL.name
+    FROM plants PL
+        JOIN plantedin PI ON PI.plantid = PL.id
+        JOIN beds BD ON PI.bedid = BD.id
+        JOIN gardens GD ON BD.gardenid = GD.id
+        JOIN families FM ON FM.id = PL.familyid
+        JOIN types TP ON TP.id = FM.typeid
+    WHERE GD.name = 'Faelledparken' and TP.name = 'shrub'
+);
 
 -- F. Write a query that returns the ID and name of all staff that 
 --    (a) have position “Planter” and (b) have planted a larger area than any 
