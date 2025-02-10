@@ -8,7 +8,7 @@
 
 -- Explanation: 
 
-SELECT PL.name
+SELECT COUNT(PL.name)
 FROM plants PL
     JOIN families FM ON FM.id = PL.familyid
 WHERE PL.name LIKE '%r%r%' AND FM.name = 'Ruellia';
