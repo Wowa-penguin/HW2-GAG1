@@ -24,7 +24,7 @@ FROM plantedin PI
     JOIN gardens GD ON BD.gardenid = GD.id
 GROUP BY GD.name, BD.id, BD.description
 HAVING SUM(PI.percentage) > 100
-ORDER BY PERC DESC
+ORDER BY PERC DESC;
     
 
 -- C. There are 10 flowerbeds that are planted to more than 100% capacity. 
@@ -40,13 +40,27 @@ FROM (
         JOIN gardens GD ON BD.gardenid = GD.id
     GROUP BY GD.name, BD.id, BD.description
     HAVING SUM(PI.percentage) < 100
-    ORDER BY PERC DESC)
+    ORDER BY PERC DESC);
 
 -- D. Write a query using a set operator that returns the number of plants that 
 --    (a) are planted in “Faelledparken” or (b) are of type “shrub”.
 
 -- Explanation: 
-
+SELECT COUNT(*)
+FROM (
+SELECT PL.name
+    FROM plants PL
+        JOIN plantedin PI ON PI.plantid = PL.id
+        JOIN beds BD ON PI.bedid = BD.id
+        JOIN gardens GD ON BD.gardenid = GD.id
+    WHERE GD.name = 'Faelledparken'
+    INTERSECT
+    SELECT PL.name
+    FROM plants PL
+        JOIN families FM ON FM.id = PL.familyid
+        JOIN types TP ON TP.id = FM.typeid
+    WHERE TP.name = 'shrub'
+);
 
 -- E. Write a query without a set operator that returns the number of plants that 
 --    (a) are planted in “Faelledparken” and (b) are of type “shrub”.
