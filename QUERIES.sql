@@ -121,9 +121,32 @@ ORDER BY
 --    than one family name, but in this database instance the answer is one family name. 
 --    As an additional hint, the average number of flowerbeds for each plant of 
 --    that family is 6.20000…. 
-
+-- 					Ég veit ekki betri leið að gera þetta þarf að fara yfir
 -- Explanation: 
 
+SELECT
+	familyID,
+	MAX(avg_beds_per_plant)
+FROM (
+	SELECT 
+		F.id AS familyID,
+		AVG(plant_bed_counts2.bed_count) AS avg_beds_per_plant
+	FROM families F
+	JOIN plants P ON P.familyID = F.id
+	JOIN (
+		SELECT 
+			PI.plantID, 
+			COUNT(DISTINCT PI.bedID) AS bed_count
+		FROM plantedIn PI
+		GROUP BY PI.plantID
+	) plant_bed_counts2 ON plant_bed_counts2.plantID = P.id
+	GROUP BY F.id
+	HAVING COUNT(P.id) >= 5
+) avg_bed_counts_per_family
+GROUP BY 
+	familyID
+HAVING 
+	MAX(avg_beds_per_plant) >= 6.2
 
 -- H. Write a query that returns the number of staff who have planted something 
 --    (at least one plant in at least one flowerbed) in all gardens.
