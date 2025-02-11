@@ -213,6 +213,23 @@ WHERE
 --    of all types from the database.
 -- Note: This is a division query; points will only be awarded if division is attempted.
 -- Explanation: 
+
+-- Try 1
+SELECT 
+	PI.bedid,
+	COUNT(DISTINCT F.typeid)
+FROM plantedin PI
+	JOIN plants P ON P.id = PI.plantid
+	JOIN families F On F.id = P.familyid
+GROUP BY
+	PI.bedid
+HAVING 
+	COUNT(DISTINCT F.typeid) = (
+								SELECT COUNT(*)
+								FROM "types"
+								);
+								
+-- Try 2
 SELECT DISTINCT
     PI.bedID
 FROM
