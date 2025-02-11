@@ -154,6 +154,19 @@ HAVING
 
 -- Explanation: 
 
+SELECT 
+COUNT(DISTINCT PI1.staffID) AS num_staff
+FROM plantedIn PI1
+WHERE NOT EXISTS (
+    SELECT g.ID 
+    FROM Gardens g
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM plantedIn PI2
+        JOIN Beds b ON PI2.bedID = b.ID
+        WHERE PI2.staffID = PI1.staffID AND b.gardenID = g.ID
+    )
+);
 
 -- I. There are 105 families that are planted in at least one flowerbed in 
 --    all the parks from the database. How many flowerbeds have at least one plant 
