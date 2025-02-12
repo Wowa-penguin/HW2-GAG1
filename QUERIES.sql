@@ -247,3 +247,31 @@ WHERE
 --    restrictions and should represent all the area planted by these staff. 
 --    The list should be ordered with the largest area first.
 -- Explanation:
+
+SELECT 
+	PI.staffid AS staff_id,
+	S.name AS staff_name,
+	SUM(B.size) AS total_area
+FROM plantedin PI
+	JOIN beds B ON B.id = PI.bedid
+	JOIN staff S on S.id = PI.staffid
+WHERE 
+	S.position = 'Planter' 
+	AND S.id IN (
+				SELECT PI2.staffid
+				FROM families F
+					JOIN plants P ON P.familyid = F.id
+					JOIN "types" T ON F.typeid = T.id
+					JOIN plantedin PI2 ON PI2.plantid = P.id
+				WHERE T.name = 'flower' AND PI2.bedid IN (
+															SELECT B2.id
+															FROM beds B2
+																JOIN gardens G ON B2.gardenid = G.id
+															WHERE G.name = 'Kongens Have'
+				)
+	)
+GROUP BY 
+	PI.staffid,
+	S.name
+ORDER BY 
+SUM(B.size) DESC
