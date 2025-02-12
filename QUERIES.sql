@@ -153,38 +153,41 @@ ORDER BY
 -- 					Ég veit ekki betri leið að gera þetta þarf að fara yfir
 -- Explanation: 
 SELECT
-    familyID,
-    MAX(avg_beds_per_plant)
+    familyName,
+    familyID
 FROM
     (
         SELECT
-            F.id AS familyID,
-            AVG(plant_bed_counts2.bed_count) AS avg_beds_per_plant
+            FM.id AS familyID,
+            FM.name AS familyName,
+            AVG(b_count_2.b_count) AS avg_beds_p
         FROM
-            families F
-            JOIN plants P ON P.familyID = F.id
+            families FM
+            JOIN plants P ON P.familyID = FM.id
             JOIN (
                 SELECT
-                    PI.plantID,
-                    COUNT(DISTINCT PI.bedID) AS bed_count
+                    PI.plantid,
+                    COUNT(DISTINCT PI.bedid) AS b_count
                 FROM
-                    plantedIn PI
+                    plantedin PI
                 GROUP BY
-                    PI.plantID
-            ) plant_bed_counts2 ON plant_bed_counts2.plantID = P.id
+                    PI.plantid
+            ) b_count_2 ON b_count_2.plantid = P.id
         GROUP BY
-            F.id
+            FM.id
         HAVING
             COUNT(P.id) >= 5
-    ) avg_bed_counts_per_family
+    ) avg_bed_f
 GROUP BY
+    familyName,
     familyID
 HAVING
-    MAX(avg_beds_per_plant) >= 6.2
-    -- H. Write a query that returns the number of staff who have planted something 
-    --    (at least one plant in at least one flowerbed) in all gardens.
-    -- Note: This is a division query; points will only be awarded if division is attempted.
-    -- Explanation: 
+    MAX(avg_beds_p) >= 6.2
+
+-- H. Write a query that returns the number of staff who have planted something 
+--    (at least one plant in at least one flowerbed) in all gardens.
+-- Note: This is a division query; points will only be awarded if division is attempted.
+-- Explanation: 
 SELECT
     COUNT(DISTINCT PI1.staffID) AS num_staff
 FROM
