@@ -108,7 +108,7 @@ FROM
 -- F. Write a query that returns the ID and name of all staff that 
 --    (a) have position “Planter” and (b) have planted a larger area than any 
 --    staff member with position “Senior Planter”. Order the result by the name.
--- 					Þarf að skoða þannan Kv:Heimir !!!
+-- 					Þarf að skoða þennan Kv:Heimir !!!
 -- Explanation: 
 SELECT
     S.id,
@@ -136,8 +136,7 @@ HAVING
                 WHERE
                     S.position = 'Senior Planter'
                 GROUP BY
-                    S.id,
-                    S.name
+                    S.id
             ) AS cal_sum
     )
 ORDER BY
