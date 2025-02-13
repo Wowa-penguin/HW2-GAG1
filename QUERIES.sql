@@ -3,7 +3,7 @@
 -- A. There are 8 plants that belong to the family “Ruellia”. 
 --    How many plants (in total) belong to families with names that have 
 --    two instances of the letter “r” (either upper or lower case)?
--- Explanation: 
+-- Explanation: The Querry sorts out the family names that do not contain two "r" and then counts the number of names left
 SELECT
     COUNT(PL.name)
 FROM
@@ -14,7 +14,7 @@ WHERE
 
 -- B. The most overfilled flowerbed is planted to 105% capacity. 
 --    What are the ID(s) of the flowerbed(s) with the most overfilled capacity?
--- Explanation: 
+-- Explanation: The querry searches for the percentages in plantedin and displays those that are over 100%
 SELECT
     BD.id,
     GD.name,
@@ -34,7 +34,8 @@ ORDER BY
 
 -- C. There are 10 flowerbeds that are planted to more than 100% capacity. 
 --    How many flowerbeds are planted to less than 100% capacity.
--- Explanation: 
+-- Explanation: Similare to the previous querry.
+-- It's instead used as a subquerry that counts those that do NOT go over 100
 SELECT
     COUNT(*)
 FROM
@@ -59,7 +60,8 @@ FROM
 
 -- D. Write a query using a set operator that returns the number of plants that 
 --    (a) are planted in “Faelledparken” or (b) are of type “shrub”.
--- Explanation: 
+-- Explanation: This querry is in fact two querries that are joined by an Intersect
+-- They are then used as a subquerry whos results are counted. 
 SELECT
     COUNT(*)
 FROM
@@ -86,7 +88,8 @@ FROM
 
 -- E. Write a query without a set operator that returns the number of plants that 
 --    (a) are planted in “Faelledparken” and (b) are of type “shrub”.
--- Explanation: 
+-- Explanation: Instead of using the intersection the querry contains all the joins together
+-- to be able to filter out the results in the "WHERE" section. They are then all counted
 SELECT
     COUNT(*)
 FROM
@@ -258,17 +261,17 @@ FROM plantedin PI
 WHERE 
 	S.position = 'Planter' 
 	AND S.id IN (
-				SELECT PI2.staffid
-				FROM families F
-					JOIN plants P ON P.familyid = F.id
-					JOIN "types" T ON F.typeid = T.id
-					JOIN plantedin PI2 ON PI2.plantid = P.id
-				WHERE T.name = 'flower' AND PI2.bedid IN (
-															SELECT B2.id
-															FROM beds B2
-																JOIN gardens G ON B2.gardenid = G.id
-															WHERE G.name = 'Kongens Have'
-				)
+        SELECT PI2.staffid
+        FROM families F
+            JOIN plants P ON P.familyid = F.id
+            JOIN "types" T ON F.typeid = T.id
+            JOIN plantedin PI2 ON PI2.plantid = P.id
+        WHERE T.name = 'flower' AND PI2.bedid IN (
+            SELECT B2.id
+            FROM beds B2
+                JOIN gardens G ON B2.gardenid = G.id
+            WHERE G.name = 'Kongens Have'
+        )
 	)
 GROUP BY 
 	PI.staffid,
