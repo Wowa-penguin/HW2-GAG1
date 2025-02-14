@@ -1,0 +1,242 @@
+ count 
+-------
+   237
+(1 row)
+
+ id  |        name        | perc 
+-----+--------------------+------
+ 243 | Kongens Have       |  105
+  51 | Botanisk Have      |  104
+  54 | Kongens Have       |  104
+  41 | Botanisk Have      |  102
+ 112 | Frederiksberg Have |  102
+ 129 | Botanisk Have      |  102
+ 251 | Frederiksberg Have |  102
+ 212 | Botanisk Have      |  102
+ 146 | Kongens Have       |  102
+(9 rows)
+
+ count 
+-------
+   271
+(1 row)
+
+ count 
+-------
+     0
+(1 row)
+
+ count 
+-------
+     0
+(1 row)
+
+ id  |        name        | percentage_sum 
+-----+--------------------+----------------
+  21 | Anna Glistrup      |            126
+ 151 | Anna Jensen        |            160
+  77 | Anna Lauritz       |            138
+ 143 | Birgitte Glistrup  |            167
+ 117 | Birgitte Jansen    |            104
+  15 | Birgitte Jansen    |            171
+   7 | Birgitte Johansen  |            156
+  19 | Birgitte Johansen  |            164
+  39 | Birgitte Johansen  |            111
+  72 | Dan Jansen         |            133
+ 104 | Dan Mikaelsen      |            117
+  61 | Dana Glistrup      |            136
+  57 | Dana Johansen      |            140
+ 141 | Eva Glistrup       |            175
+ 113 | Eva Glistrup       |            136
+  81 | Eva Hvidt          |            144
+  49 | Eva Jansen         |            132
+ 149 | Eva Johansen       |            141
+ 159 | Eva Lauritz        |            123
+ 154 | Frank Jansen       |            192
+ 148 | Frank Jensen       |            167
+  80 | Frank Laudrup      |            141
+   2 | Frank Lauridsen    |            155
+  30 | Frank Lauridsen    |            158
+  52 | Frank Lauritz      |            146
+  23 | Gitte Glistrup     |            145
+ 145 | Gitte Johansen     |            139
+  11 | Gitte Mikaelsen    |            141
+  76 | Hans Hansen        |            183
+  82 | Hans Hvidt         |            140
+  60 | Hans Jensen        |            166
+  12 | Hans Lauridsen     |            173
+  35 | Inge Hansen        |            156
+  53 | Inge Hvidt         |            160
+  47 | Inge Jensen        |            157
+ 127 | Inge Lauritz       |            152
+ 144 | Jan Hansen         |            152
+  44 | Jan Hvidt          |            172
+ 136 | Jan Jansen         |            135
+  20 | Jan Jensen         |            164
+ 162 | Jan Johansen       |            162
+ 110 | Jan Lauridsen      |            178
+  18 | Jan Mikaelsen      |            165
+  59 | Jane Jensen        |            147
+  37 | Jane Laudrup       |            150
+  17 | Jane Lauritz       |            157
+  45 | Jane Mikaelsen     |            146
+ 153 | Jane Mikaelsen     |            135
+  54 | Jens Glistrup      |            150
+ 120 | Jens Hvidt         |            154
+  40 | Jens Laudrup       |            151
+  92 | Jens Laudrup       |            158
+  34 | Jens Laudrup       |            134
+ 146 | Johan Hansen       |            144
+  66 | Johan Hansen       |            166
+   6 | Johan Laudrup      |            157
+  68 | Johan Laudrup      |            142
+  48 | Johan Mikaelsen    |            194
+ 114 | Johan Mikaelsen    |            179
+ 126 | Johan Mikaelsen    |            150
+ 106 | Karl Hvidt         |            168
+   4 | Karl Laudrup       |            137
+ 132 | Karl Lauridsen     |            104
+ 118 | Kent Glistrup      |            135
+   8 | Kent Lauridsen     |            171
+ 122 | Kent Lauridsen     |            138
+ 152 | Kent Mikaelsen     |            132
+ 105 | Klara Glistrup     |            160
+ 139 | Klara Jensen       |            189
+  95 | Klara Lauridsen    |            184
+  25 | Kristine Hansen    |            135
+  91 | Kristine Hansen    |            158
+ 125 | Kristine Johansen  |            134
+ 133 | Kristine Johansen  |            104
+  27 | Kristine Lauridsen |            136
+  42 | Mikael Glistrup    |            110
+  46 | Mikael Johansen    |            138
+ 130 | Mikael Johansen    |            127
+  64 | Mikael Johansen    |            157
+  38 | Mikael Lauritz     |            150
+ 142 | Mikael Lauritz     |            185
+ 156 | Mikael Mikaelsen   |            191
+ 102 | Peter Glistrup     |            113
+  10 | Peter Jansen       |            143
+  74 | Peter Jansen       |            155
+ 112 | Peter Jensen       |            129
+  94 | Peter Johansen     |            167
+ 128 | Peter Mikaelsen    |            196
+ 157 | Sisse Glistrup     |            140
+  29 | Sisse Glistrup     |            152
+ 155 | Sisse Jansen       |            167
+ 103 | Sisse Jansen       |            134
+  89 | Sisse Jensen       |            132
+  31 | Sisse Johansen     |            133
+  83 | Sisse Laudrup      |            113
+  13 | Sisse Lauridsen    |            101
+  75 | Sisse Mikaelsen    |            139
+(97 rows)
+
+ bedid 
+-------
+   177
+   253
+(2 rows)
+
+ staff_id |     staff_name     | total_area 
+----------+--------------------+------------
+      154 | Frank Jansen       |       2861
+       48 | Johan Mikaelsen    |       2714
+       44 | Jan Hvidt          |       2693
+      142 | Mikael Lauritz     |       2677
+      110 | Jan Lauridsen      |       2674
+       91 | Kristine Hansen    |       2639
+      139 | Klara Jensen       |       2602
+       76 | Hans Hansen        |       2600
+      156 | Mikael Mikaelsen   |       2584
+        7 | Birgitte Johansen  |       2554
+      162 | Jan Johansen       |       2538
+       95 | Klara Lauridsen    |       2532
+      151 | Anna Jensen        |       2497
+      114 | Johan Mikaelsen    |       2491
+       53 | Inge Hvidt         |       2448
+       46 | Mikael Johansen    |       2433
+      148 | Frank Jensen       |       2428
+       59 | Jane Jensen        |       2425
+       60 | Hans Jensen        |       2398
+      105 | Klara Glistrup     |       2378
+      141 | Eva Glistrup       |       2372
+       20 | Jan Jensen         |       2370
+       72 | Dan Jansen         |       2369
+       19 | Birgitte Johansen  |       2363
+       81 | Eva Hvidt          |       2351
+       37 | Jane Laudrup       |       2347
+      146 | Johan Hansen       |       2339
+       18 | Jan Mikaelsen      |       2334
+       45 | Jane Mikaelsen     |       2334
+       10 | Peter Jansen       |       2312
+      128 | Peter Mikaelsen    |       2301
+       35 | Inge Hansen        |       2295
+      120 | Jens Hvidt         |       2295
+       29 | Sisse Glistrup     |       2286
+       30 | Frank Lauridsen    |       2283
+       66 | Johan Hansen       |       2275
+       15 | Birgitte Jansen    |       2275
+       34 | Jens Laudrup       |       2261
+      125 | Kristine Johansen  |       2255
+      144 | Jan Hansen         |       2252
+       57 | Dana Johansen      |       2236
+       40 | Jens Laudrup       |       2234
+      155 | Sisse Jansen       |       2213
+       17 | Jane Lauritz       |       2201
+       68 | Johan Laudrup      |       2197
+       47 | Inge Jensen        |       2192
+        6 | Johan Laudrup      |       2189
+       75 | Sisse Mikaelsen    |       2180
+      143 | Birgitte Glistrup  |       2177
+       11 | Gitte Mikaelsen    |       2166
+       23 | Gitte Glistrup     |       2160
+      153 | Jane Mikaelsen     |       2142
+        8 | Kent Lauridsen     |       2133
+       74 | Peter Jansen       |       2132
+       92 | Jens Laudrup       |       2124
+       80 | Frank Laudrup      |       2122
+       54 | Jens Glistrup      |       2120
+      122 | Kent Lauridsen     |       2118
+       21 | Anna Glistrup      |       2117
+       94 | Peter Johansen     |       2116
+      127 | Inge Lauritz       |       2115
+       25 | Kristine Hansen    |       2112
+      118 | Kent Glistrup      |       2107
+      152 | Kent Mikaelsen     |       2099
+      136 | Jan Jansen         |       2069
+       52 | Frank Lauritz      |       2065
+       77 | Anna Lauritz       |       2061
+       64 | Mikael Johansen    |       2060
+      103 | Sisse Jansen       |       2040
+      126 | Johan Mikaelsen    |       2029
+       82 | Hans Hvidt         |       2028
+        4 | Karl Laudrup       |       2020
+      157 | Sisse Glistrup     |       2015
+      106 | Karl Hvidt         |       2005
+       27 | Kristine Lauridsen |       1999
+       61 | Dana Glistrup      |       1999
+      159 | Eva Lauritz        |       1956
+       12 | Hans Lauridsen     |       1950
+      130 | Mikael Johansen    |       1899
+       42 | Mikael Glistrup    |       1898
+       89 | Sisse Jensen       |       1887
+       38 | Mikael Lauritz     |       1851
+      145 | Gitte Johansen     |       1848
+      133 | Kristine Johansen  |       1840
+       31 | Sisse Johansen     |       1830
+      149 | Eva Johansen       |       1813
+       78 | Kent Laudrup       |       1789
+      102 | Peter Glistrup     |       1763
+        2 | Frank Lauridsen    |       1736
+       83 | Sisse Laudrup      |       1733
+      113 | Eva Glistrup       |       1726
+      112 | Peter Jensen       |       1677
+       49 | Eva Jansen         |       1586
+      117 | Birgitte Jansen    |       1572
+      104 | Dan Mikaelsen      |       1523
+      132 | Karl Lauridsen     |       1455
+       13 | Sisse Lauridsen    |       1384
+       39 | Birgitte Johansen  |       1278
+(98 rows)
+
