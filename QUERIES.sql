@@ -111,12 +111,11 @@ FROM
 -- F. Write a query that returns the ID and name of all staff that 
 --    (a) have position “Planter” and (b) have planted a larger area than any 
 --    staff member with position “Senior Planter”. Order the result by the name.
--- 					Þarf að skoða þennan Kv:Heimir !!!
--- Explanation: 
+-- Explanation: The query selects 'Planter' staff with a total planting percentage greater than the lowest total percentage of any 'Senior Planter'. It groups by staff ID and name, summing percentages, and orders by name.
 SELECT
     S.id,
     S.name,
-    SUM(PI.percentage) AS idk
+    SUM(PI.percentage) AS percentage_sum
 FROM
     staff S
     JOIN plantedin PI on PI.staffid = S.id
@@ -152,8 +151,7 @@ ORDER BY
 --    than one family name, but in this database instance the answer is one family name. 
 --    As an additional hint, the average number of flowerbeds for each plant of 
 --    that family is 6.20000…. 
--- 					Ég veit ekki betri leið að gera þetta þarf að fara yfir
--- Explanation: 
+-- Explanation: The query selects plant families with at least five plants and an average of at least 6.2 distinct beds per plant. It uses nested aggregation to compute bed distribution before filtering eligible families.
 SELECT
     familyName,
     familyID
@@ -185,11 +183,10 @@ GROUP BY
     familyID
 HAVING
     MAX(avg_beds_p) >= 6.2
-
--- H. Write a query that returns the number of staff who have planted something 
---    (at least one plant in at least one flowerbed) in all gardens.
--- Note: This is a division query; points will only be awarded if division is attempted.
--- Explanation: 
+    -- H. Write a query that returns the number of staff who have planted something 
+    --    (at least one plant in at least one flowerbed) in all gardens.
+    -- Note: This is a division query; points will only be awarded if division is attempted.
+    -- Explanation: The query counts staff members who have planted in every garden, using a double NOT EXISTS to ensure no garden is missing from their planting record.
 SELECT
     COUNT(DISTINCT PI1.staffID) AS num_staff
 FROM
@@ -217,8 +214,7 @@ WHERE
 --    all the parks from the database. How many flowerbeds have at least one plant 
 --    of all types from the database.
 -- Note: This is a division query; points will only be awarded if division is attempted.
--- Explanation: 
-
+-- Explanation: The query selects distinct bed IDs where all plant types are represented, using a double NOT EXISTS to ensure no type is missing.
 SELECT DISTINCT
     PI.bedID
 FROM
@@ -249,32 +245,39 @@ WHERE
 --    garden “Kongens Have”. The total area returned, however, should not have those
 --    restrictions and should represent all the area planted by these staff. 
 --    The list should be ordered with the largest area first.
--- Explanation:
-
-SELECT 
-	PI.staffid AS staff_id,
-	S.name AS staff_name,
-	SUM(B.size) AS total_area
-FROM plantedin PI
-	JOIN beds B ON B.id = PI.bedid
-	JOIN staff S on S.id = PI.staffid
-WHERE 
-	S.position = 'Planter' 
-	AND S.id IN (
-        SELECT PI2.staffid
-        FROM families F
+-- Explanation: The query retrieves 'Planter' staff who have planted flowers in beds within 'Kongens Have', summing the total bed area they worked on. It filters using subqueries to ensure only relevant staff are included and orders results by total area in descending order.
+SELECT
+    PI.staffid AS staff_id,
+    S.name AS staff_name,
+    SUM(B.size) AS total_area
+FROM
+    plantedin PI
+    JOIN beds B ON B.id = PI.bedid
+    JOIN staff S on S.id = PI.staffid
+WHERE
+    S.position = 'Planter'
+    AND S.id IN (
+        SELECT
+            PI2.staffid
+        FROM
+            families F
             JOIN plants P ON P.familyid = F.id
             JOIN "types" T ON F.typeid = T.id
             JOIN plantedin PI2 ON PI2.plantid = P.id
-        WHERE T.name = 'flower' AND PI2.bedid IN (
-            SELECT B2.id
-            FROM beds B2
-                JOIN gardens G ON B2.gardenid = G.id
-            WHERE G.name = 'Kongens Have'
-        )
-	)
-GROUP BY 
-	PI.staffid,
-	S.name
-ORDER BY 
-SUM(B.size) DESC
+        WHERE
+            T.name = 'flower'
+            AND PI2.bedid IN (
+                SELECT
+                    B2.id
+                FROM
+                    beds B2
+                    JOIN gardens G ON B2.gardenid = G.id
+                WHERE
+                    G.name = 'Kongens Have'
+            )
+    )
+GROUP BY
+    PI.staffid,
+    S.name
+ORDER BY
+    SUM(B.size) DESC
